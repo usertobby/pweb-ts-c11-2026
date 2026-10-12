@@ -1,0 +1,478 @@
+:root {
+  --paper: #f8f8f6;
+  --ink: #282925;
+  --muted: #858580;
+  --green: #2e4a3b;
+  --border: #e7e7e2;
+}
+
+.ambil-page {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+.ambil-page * {
+  box-sizing: border-box;
+}
+
+.ambil-page [hidden] {
+  display: none !important;
+}
+
+.ambil-header {
+  background: rgba(255, 255, 255, .9);
+  border-bottom: 1px solid var(--border);
+}
+
+.ambil-header-content {
+  max-width: 1080px;
+  margin: auto;
+  padding: 21px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ambil-page .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ambil-page .brand-icon {
+  display: grid;
+  place-items: center;
+  background: #e5eee7;
+  color: #3d654b;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  font-size: 26px;
+}
+
+.ambil-page .brand h1 {
+  font-size: 19px;
+  letter-spacing: -.9px;
+  margin: 0 0 3px;
+  font-weight: 750;
+}
+
+.brand-dot {
+  color: #5e9670;
+}
+
+.ambil-page .brand p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.ambil-nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ambil-nav a {
+  font-size: 12px;
+  font-weight: 650;
+  color: #51534d;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: background .2s;
+}
+
+.ambil-nav a:hover {
+  background: #f0f1ed;
+}
+
+.ambil-nav a:last-child {
+  border: 1px solid #d9ded8;
+  background: #f7f9f6;
+  color: #34523f;
+}
+
+.ambil-main {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 65px 20px 95px;
+}
+
+.ambil-intro {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.ambil-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d9e7dc;
+  background: #eef5ef;
+  border-radius: 6px;
+  padding: 9px 13px;
+  color: #497253;
+  font-size: 10px;
+  letter-spacing: 1.35px;
+  font-weight: 750;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5b9c70;
+  box-shadow: 0 0 0 3px #d9eadc;
+}
+
+.ambil-intro h2 {
+  font-size: clamp(32px, 5vw, 46px);
+  letter-spacing: -2px;
+  line-height: 1.18;
+  margin: 25px 0 18px;
+  font-weight: 700;
+}
+
+.ambil-intro h2 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: #527a5e;
+}
+
+.ambil-intro p {
+  font-size: 14px;
+  color: #777a72;
+  line-height: 1.8;
+  max-width: 480px;
+  margin: auto;
+}
+
+.ambil-card {
+  background: #fff;
+  border: 1px solid #e8e8e4;
+  border-radius: 14px;
+  padding: 35px 38px;
+  box-shadow: 0 8px 30px rgba(37, 43, 35, .035);
+}
+
+.card-heading {
+  border-bottom: 1px solid #efefeb;
+  padding-bottom: 24px;
+  margin-bottom: 27px;
+}
+
+.card-heading h3 {
+  font-size: 23px;
+  letter-spacing: -.7px;
+  margin: 0 0 8px;
+}
+
+.card-heading p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ambil-form-group {
+  margin-bottom: 25px;
+}
+
+.ambil-form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ambil-form-group select {
+  appearance: none;
+  width: 100%;
+  height: 49px;
+  border: 1px solid #dbddd7;
+  border-radius: 9px;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23757972' stroke-width='1.6' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 15px center;
+  padding: 0 42px 0 15px;
+  color: #333;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ambil-form-group select:focus {
+  outline: 0;
+  border-color: #71977a;
+  box-shadow: 0 0 0 3px #e1ede3;
+}
+
+.ambil-form-group small {
+  display: block;
+  font-size: 11px;
+  color: #979993;
+  margin-top: 9px;
+  line-height: 1.6;
+}
+
+.ambil-error {
+  background: #fff0ee;
+  color: #a54239;
+  border: 1px solid #f3d6d2;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+
+.ambil-button {
+  width: 100%;
+  height: 50px;
+  background: var(--green);
+  color: #fff;
+  border: 0;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+  margin-top: 10px;
+}
+
+.ambil-button:hover {
+  background: #416450;
+  transform: translateY(-1px);
+}
+
+.ambil-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ambil-help {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  color: #91948d;
+}
+
+.ambil-help span {
+  color: #67846c;
+  font-size: 17px;
+}
+
+.ambil-help p {
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.ambil-help strong {
+  color: #5c625b;
+}
+
+.ticket-section {
+  margin-top: 35px;
+  scroll-margin-top: 25px;
+}
+
+.ticket-card {
+  background: #fff;
+  border: 1px solid #e5e7e1;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(37, 43, 35, .04);
+}
+
+.ticket-top {
+  text-align: center;
+  padding: 32px 25px 27px;
+  background: #f0f6f0;
+}
+
+.ticket-success-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #426e4d;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 23px;
+  margin: 0 auto 15px;
+}
+
+.ticket-top h3 {
+  font-size: 20px;
+  margin: 0 0 9px;
+  letter-spacing: -.4px;
+}
+
+.ticket-top p {
+  font-size: 12px;
+  color: #748175;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.ticket-content {
+  padding: 30px 38px;
+  text-align: center;
+}
+
+.ticket-label {
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 1.6px;
+  color: #899087;
+}
+
+#ticketNumber {
+  font-size: clamp(48px, 10vw, 68px);
+  letter-spacing: -3px;
+  margin: 12px 0 24px;
+  color: #2e4a3b;
+}
+
+.ticket-divider {
+  border-top: 1px dashed #d5d9d2;
+  margin-bottom: 24px;
+}
+
+.ticket-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ticket-info div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: left;
+}
+
+.ticket-info span {
+  font-size: 12px;
+  color: #888c85;
+}
+
+.ticket-info strong {
+  font-size: 12px;
+  color: #383e38;
+  text-align: right;
+}
+
+.ticket-actions {
+  padding: 0 38px 32px;
+  display: flex;
+  gap: 10px;
+}
+
+.print-button,
+.new-ticket-button {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.print-button {
+  background: #2e4a3b;
+  border: 1px solid #2e4a3b;
+  color: #fff;
+}
+
+.new-ticket-button {
+  background: #fff;
+  border: 1px solid #d7dfd7;
+  color: #3c5e46;
+}
+
+.print-button:hover {
+  background: #42634f;
+}
+
+.new-ticket-button:hover {
+  background: #f3f7f3;
+}
+
+@media (max-width: 600px) {
+  .ambil-header-content {
+    padding: 17px 18px;
+    flex-wrap: wrap;
+  }
+
+  .ambil-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .ambil-nav a {
+    padding: 8px 10px;
+  }
+
+  .ambil-main {
+    padding: 45px 16px 70px;
+  }
+
+  .ambil-card {
+    padding: 26px 22px;
+  }
+
+  .ambil-intro h2 {
+    font-size: 34px;
+  }
+
+  .ticket-actions {
+    flex-direction: column;
+    padding: 0 24px 24px;
+  }
+
+  .ticket-content {
+    padding: 27px 24px;
+  }
+}
+
+@media print {
+  .ambil-header,
+  .ambil-intro,
+  .ambil-card,
+  .ambil-help,
+  .ticket-actions {
+    display: none !important;
+  }
+
+  .ambil-page {
+    background: white;
+  }
+
+  .ambil-main {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .ticket-section {
+    margin: 0;
+  }
+
+  .ticket-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    break-inside: avoid;
+  }
+}

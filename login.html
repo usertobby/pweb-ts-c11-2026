@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Login | Sistem Antrian Rumah Sakit</title>
+
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/login.css" />
+
+  <script type="module" src="./dist/login.js"></script>
+</head>
+
+<body class="login-page">
+
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <main class="login-container">
+    <section class="login-story" aria-label="Tentang sistem">
+      <div class="story-top"><span class="brand-mark">✳</span><span>care11<span class="brand-dot">.</span></span></div>
+      <div class="story-content">
+        <div class="eyebrow"><span class="live-dot"></span> HOSPITAL QUEUE MANAGEMENT</div>
+        <h2>Pelayanan lebih tenang.<br>
+            <em>Antrean lebih tertata.</em>
+        </h2><p>Satu ruang sederhana untuk mengelola layanan, memanggil pasien, dan menjaga setiap langkah tetap terorganisir.</p>
+        <div class="story-note"><span class="note-icon">↗</span><div><strong>Dibuat untuk kenyamanan Anda</strong><small>Ringkas, jelas, dan mudah digunakan.</small></div></div></div>
+      <div class="story-bottom"><span>© 2026 Kelompok C11</span><span>We provide 11/10 care to you ✳</span></div>
+    </section>
+
+    <div class="login-card">
+
+      <div class="login-header">
+        <div class="login-icon">✳</div>
+        <span class="login-kicker">SELAMAT DATANG KEMBALI</span>
+
+        <h1>Masuk ke ruang kerja.</h1>
+
+        <p>Masukkan detail akun untuk melanjutkan ke dashboard Anda.</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Masukkan username"
+            autocomplete="username"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Masukkan password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+
+        <p
+          id="loginError"
+          class="error-message"
+          role="alert"
+          aria-live="polite"
+          hidden
+        ></p>
+
+        <button
+          type="submit"
+          id="loginButton"
+          class="login-button"
+        >
+          <span id="buttonText">Masuk ke dashboard</span><span aria-hidden="true">→</span>
+        </button>
+
+      </form>
+
+      <div class="login-footer">
+        <p>Datang sebagai pengunjung?</p>
+
+        <a href="./ambil-antrian.html">
+          Ambil nomor antrean <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

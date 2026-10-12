@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Ambil Antrian | Sistem Antrian Rumah Sakit</title>
+
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/ambil-antrian.css" />
+
+  <script type="module" src="./dist/ambil-antrian.js"></script>
+</head>
+
+<body class="ambil-page">
+
+  <header class="ambil-header">
+    <div class="ambil-header-content">
+
+      <div class="brand">
+        <div class="brand-icon">✳</div>
+
+        <div>
+          <h1>care11<span class="brand-dot">.</span></h1>
+          <p>Patient services</p>
+        </div>
+      </div>
+
+      <nav class="ambil-nav">
+        <a href="./layar.html">Layar Antrian</a>
+        <a href="./login.html">Login Petugas</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="ambil-main">
+
+    <section class="ambil-intro">
+      <span class="ambil-badge"><span class="live-dot"></span> SELF-SERVICE CHECK-IN</span>
+
+      <h2>Selamat datang.<br><em>Mari mulai antrean Anda.</em></h2>
+
+      <p>
+        Pilih layanan yang Anda butuhkan, lalu dapatkan nomor antrean dalam beberapa langkah sederhana.
+      </p>
+    </section>
+
+    <section class="ambil-card">
+
+      <div class="card-heading">
+        <h3>Detail kunjungan</h3>
+        <p>Lengkapi pilihan berikut untuk mendapatkan tiket.</p>
+      </div>
+
+      <form id="ambilForm" novalidate>
+
+        <div class="ambil-form-group">
+
+          <label for="jenisAntrian">
+            Jenis Antrian
+          </label>
+
+          <select id="jenisAntrian" required>
+            <option value="">
+              Memuat layanan...
+            </option>
+          </select>
+
+          <small>
+            Pilih layanan yang ingin Anda kunjungi.
+          </small>
+
+        </div>
+
+        <div class="ambil-form-group">
+
+          <label for="prioritas">
+            Tingkat Prioritas
+          </label>
+
+          <select id="prioritas" required>
+            <option value="">Pilih Prioritas</option>
+            <option value="Normal">Normal</option>
+            <option value="Lansia">Lansia</option>
+            <option value="Disabilitas">Disabilitas</option>
+            <option value="VIP">VIP</option>
+          </select>
+
+          <small>
+            Pilih prioritas sesuai kategori pengunjung.
+          </small>
+
+        </div>
+
+        <p
+          id="ambilError"
+          class="ambil-error"
+          role="alert"
+          aria-live="polite"
+          hidden
+        ></p>
+
+        <button
+          type="submit"
+          id="ambilButton"
+          class="ambil-button"
+        >
+          Dapatkan nomor antrean <span aria-hidden="true">→</span>
+        </button>
+
+      </form>
+
+    </section>
+    <div class="ambil-help"><span>✳</span><p><strong>Butuh bantuan?</strong> Petugas kami siap membantu Anda di meja informasi.</p></div>
+
+    <!-- HASIL TIKET -->
+
+    <section
+      id="ticketSection"
+      class="ticket-section"
+      hidden
+    >
+
+      <div class="ticket-card">
+
+        <div class="ticket-top">
+          <div class="ticket-success-icon">✓</div>
+
+          <h3>Tiket Anda sudah siap!</h3>
+
+          <p>
+            Silakan simpan nomor antrian Anda
+            dan tunggu hingga dipanggil.
+          </p>
+        </div>
+
+        <div class="ticket-content">
+
+          <p class="ticket-label">
+            NOMOR ANTRIAN ANDA
+          </p>
+
+          <h2 id="ticketNumber">A-001</h2>
+
+          <div class="ticket-divider"></div>
+
+          <div class="ticket-info">
+
+            <div>
+              <span>Jenis Layanan</span>
+              <strong id="ticketService">-</strong>
+            </div>
+
+            <div>
+              <span>Prioritas</span>
+              <strong id="ticketPriority">-</strong>
+            </div>
+
+            <div>
+              <span>Waktu Pengambilan</span>
+              <strong id="ticketTime">-</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="ticket-actions">
+
+          <button
+            type="button"
+            id="printTicket"
+            class="print-button"
+          >
+            Cetak tiket
+          </button>
+
+          <button
+            type="button"
+            id="newTicket"
+            class="new-ticket-button"
+          >
+            Ambil tiket lain
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
