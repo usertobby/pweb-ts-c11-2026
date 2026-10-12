@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="id" class="auth-pending">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f7f3" />
+  <title>Dashboard Admin | care11</title>
+  <style>.auth-pending body{visibility:hidden}</style>
+  <script>
+    (() => {
+      let allowed = false;
+      try {
+        const user = JSON.parse(localStorage.getItem("hospital_user") || "null");
+        allowed = Boolean(user?.accessToken && ["admin", "moderator"].includes(user.role));
+      } catch {
+        allowed = false;
+      }
+      if (!allowed) {
+        window.location.replace("login.html");
+        return;
+      }
+      document.documentElement.classList.remove("auth-pending");
+    })();
+  </script>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/admin.css" />
+  <script type="module" src="./dist/admin.js"></script>
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <a class="brand" href="./index.html" aria-label="care11 dashboard">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span><strong>care11<span>.</span></strong><small>Patient services</small></span>
+    </a>
+    <nav class="top-links" aria-label="Navigasi utama">
+      <a class="current" href="./index.html">Dashboard</a>
+      <a href="./operator.html">Operator</a>
+      <a href="./layar.html" target="_blank">Layar antrian ↗</a>
+      <a href="./ambil-antrian.html" target="_blank">Ambil antrian ↗</a>
+    </nav>
+    <div class="account">
+      <div class="account-avatar" id="userInitial">A</div>
+      <div class="account-copy"><strong id="userName">Admin</strong><span id="userRole">Administrator</span></div>
+      <button id="logoutButton" class="logout-button" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-row">
+      <div><p class="eyebrow"><span class="live-dot"></span> PUSAT KENDALI LAYANAN</p><h1>Dashboard <em>antrian.</em></h1><p class="welcome-copy">Pantau layanan dan bantu pengunjung mendapatkan nomor antrian.</p></div>
+      <div class="today-chip"><span class="calendar-icon" aria-hidden="true">▦</span><span><small>HARI INI</small><strong id="todayDate">—</strong></span></div>
+    </section>
+
+    <section class="stats-grid" aria-label="Ringkasan antrian">
+      <article class="stat-card"><span class="stat-icon green" aria-hidden="true">▤</span><div><p>Total tiket hari ini</p><strong id="totalCount">0</strong><small>seluruh layanan</small></div><span class="stat-spark" aria-hidden="true">↗</span></article>
+      <article class="stat-card"><span class="stat-icon amber" aria-hidden="true">◷</span><div><p>Menunggu</p><strong id="waitingCount">0</strong><small>siap dipanggil</small></div><span class="stat-spark amber-text" aria-hidden="true">●</span></article>
+      <article class="stat-card"><span class="stat-icon blue" aria-hidden="true">◉</span><div><p>Sedang dilayani</p><strong id="calledCount">0</strong><small>tiket aktif</small></div><span class="stat-spark blue-text" aria-hidden="true">↗</span></article>
+      <article class="stat-card"><span class="stat-icon lilac" aria-hidden="true">✓</span><div><p>Selesai</p><strong id="doneCount">0</strong><small>kunjungan tuntas</small></div><span class="stat-spark lilac-text" aria-hidden="true">↗</span></article>
+    </section>
+
+    <div class="content-grid">
+      <section class="panel services-panel">
+        <div class="panel-heading"><div><p class="eyebrow">PENGATURAN LAYANAN</p><h2>Jenis antrian</h2><p class="panel-subtitle">Atur layanan yang tersedia untuk pengunjung.</p></div><span class="count-pill" id="serviceCount">0 layanan</span></div>
+        <form id="serviceForm" class="service-form" novalidate>
+          <div class="field code-field"><label for="serviceCode">Kode</label><input id="serviceCode" name="kode" maxlength="1" placeholder="A" autocomplete="off" required /><small>1 huruf kapital</small></div>
+          <div class="field name-field"><label for="serviceName">Nama layanan</label><input id="serviceName" name="nama" maxlength="60" placeholder="Contoh: Poli Umum" autocomplete="off" required /><small>Gunakan nama yang mudah dikenali</small></div>
+          <button class="primary-button add-service" type="submit"><span aria-hidden="true">＋</span> Tambah layanan</button>
+          <p class="form-feedback" id="serviceFeedback" role="alert" aria-live="polite" hidden></p>
+        </form>
+        <div class="service-list-head"><span>LAYANAN</span><span>ANTRIAN</span><span>STATUS</span><span>AKSI</span></div>
+        <div id="serviceList" class="service-list" aria-live="polite"></div>
+        <div id="emptyServices" class="empty-state" hidden><span aria-hidden="true">✳</span><strong>Belum ada layanan</strong><p>Tambahkan jenis antrian pertama untuk mulai.</p></div>
+      </section>
+
+      <section class="panel manual-panel">
+        <div class="panel-heading"><div><p class="eyebrow">BANTU PENGUNJUNG</p><h2>Tiket manual</h2><p class="panel-subtitle">Terbitkan tiket untuk pengunjung di meja informasi.</p></div><span class="manual-icon" aria-hidden="true">＋</span></div>
+        <form id="manualForm" class="manual-form" novalidate>
+          <div class="field"><label for="manualService">Jenis layanan</label><select id="manualService" required><option value="">Pilih layanan</option></select></div>
+          <fieldset class="priority-field"><legend>Tingkat prioritas</legend><div class="priority-options">
+            <label class="priority-option"><input type="radio" name="manualPriority" value="Normal" checked /><span class="priority-dot normal-dot"></span><span>Normal</span></label>
+            <label class="priority-option"><input type="radio" name="manualPriority" value="Lansia" /><span class="priority-dot elder-dot"></span><span>Lansia</span></label>
+            <label class="priority-option"><input type="radio" name="manualPriority" value="Disabilitas" /><span class="priority-dot access-dot"></span><span>Disabilitas</span></label>
+            <label class="priority-option"><input type="radio" name="manualPriority" value="VIP" /><span class="priority-dot vip-dot"></span><span>VIP</span></label>
+          </div></fieldset>
+          <p class="form-feedback" id="manualFeedback" role="alert" aria-live="polite" hidden></p>
+          <button id="manualSubmit" class="primary-button issue-button" type="submit">Terbitkan tiket <span aria-hidden="true">→</span></button>
+        </form>
+        <section class="issued-ticket" id="issuedTicket" aria-live="polite" hidden><span class="ticket-check">✓</span><div><small>TIKET BERHASIL DITERBITKAN</small><strong id="issuedNumber">A-001</strong><span id="issuedDetails">Poli Umum · Normal</span></div><button id="dismissTicket" type="button" aria-label="Tutup tiket">×</button></section>
+        <div class="manual-note"><span aria-hidden="true">ⓘ</span><p>Tiket masuk langsung ke antrian dan mengikuti urutan prioritas saat dipanggil.</p></div>
+      </section>
+    </div>
+
+    <section class="panel queue-panel">
+      <div class="panel-heading queue-heading"><div><p class="eyebrow">KONTROL ANTRIAN</p><h2>Antrian per layanan</h2><p class="panel-subtitle">Panggil sesuai prioritas atau tandai tiket yang dilewati.</p></div><button id="resetQueue" class="text-danger" type="button"><span aria-hidden="true">↻</span> Reset semua antrian</button></div>
+      <div id="queuesByService" class="queues-by-service" aria-live="polite"></div>
+      <div id="emptyTickets" class="table-empty" hidden>Belum ada tiket. Tiket baru akan muncul di sini.</div>
+    </section>
+    <footer class="dashboard-footer"><span>care11<span class="brand-dot">.</span> <span class="footer-muted">· Sistem antrian layanan pasien</span></span><span><span class="live-dot"></span> Data tersimpan di perangkat ini</span></footer>
+  </main>
+  <dialog id="confirmDialog" class="confirm-dialog"><form method="dialog"><span class="dialog-icon">↻</span><h2>Reset semua antrian?</h2><p>Seluruh tiket akan dihapus dan nomor antrian kembali dari awal. Tindakan ini tidak dapat dibatalkan.</p><div class="dialog-actions"><button class="secondary-button" value="cancel">Batalkan</button><button id="confirmReset" class="danger-button" value="confirm">Reset antrian</button></div></form></dialog>
+</body>
+</html>
