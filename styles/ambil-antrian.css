@@ -476,3 +476,11 @@
     break-inside: avoid;
   }
 }
+
+/* Tombol keluar */
+.ambil-nav .ambil-logout {
+  font: inherit; font-size: 14px; font-weight: 600;
+  border: 0; background: transparent; color: inherit;
+  cursor: pointer; padding: 0;
+}
+.ambil-nav .ambil-logout:hover { text-decoration: underline; }

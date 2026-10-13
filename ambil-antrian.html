@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="auth-pending">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Ambil Antrian | Sistem Antrian Rumah Sakit</title>
 
+  <style>.auth-pending body{visibility:hidden}</style>
+  <script>
+    (() => {
+      let allowed = false;
+      try {
+        const user = JSON.parse(localStorage.getItem("hospital_user") || "null");
+        allowed = Boolean(user?.accessToken);
+      } catch { allowed = false; }
+      if (!allowed) { window.location.replace("login.html"); return; }
+      document.documentElement.classList.remove("auth-pending");
+    })();
+  </script>
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/ambil-antrian.css" />
 
@@ -28,7 +40,7 @@
 
       <nav class="ambil-nav">
         <a href="./layar.html">Layar Antrian</a>
-        <a href="./login.html">Login Petugas</a>
+        <button type="button" id="logoutButton" class="ambil-logout">Keluar</button>
       </nav>
 
     </div>

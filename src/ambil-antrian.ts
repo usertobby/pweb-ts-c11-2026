@@ -1,3 +1,4 @@
+import { requireAuth, watchAuthChanges, logout } from "./utils/auth.js";
 import {
   getJenisAntrian,
   getTiket,
@@ -11,6 +12,9 @@ import type {
 } from "./types/index.js";
 
 
+
+function initPage(): void {
+  document.getElementById("logoutButton")?.addEventListener("click", logout);
 // --- ELEMENT HTML ---
 const ambilForm = document.getElementById(
   "ambilForm"
@@ -349,3 +353,9 @@ window.addEventListener(
 
 // --- INITIAL LOAD ---
 loadJenisAntrian();
+}
+
+if (requireAuth()) {
+  watchAuthChanges(false);
+  initPage();
+}

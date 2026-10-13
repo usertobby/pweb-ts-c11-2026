@@ -11,7 +11,7 @@
       let allowed = false;
       try {
         const user = JSON.parse(localStorage.getItem("hospital_user") || "null");
-        allowed = Boolean(user?.accessToken);
+        allowed = Boolean(user?.accessToken && ["admin", "moderator"].includes(user.role));
       } catch {
         allowed = false;
       }

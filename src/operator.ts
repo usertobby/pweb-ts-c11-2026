@@ -1,10 +1,11 @@
 import { getJenisAntrian, getTiket, getUser, saveTiket } from "./services/storage.js";
-import { logout, requireAuth } from "./utils/auth.js";
+import { logout, requireAdmin, watchAuthChanges } from "./utils/auth.js";
 import type { JenisAntrian, Priority, Tiket } from "./types/index.js";
 
+
+function initPage(): void {
 // --- AUTH GUARD ---
-// Halaman operator hanya butuh login (role apa pun boleh mengoperasikan loket).
-requireAuth();
+// Operator hanya untuk admin/moderator.
 
 // --- ELEMENT HTML ---
 const byId = <T extends HTMLElement>(id: string): T | null => document.getElementById(id) as T | null;
@@ -197,3 +198,10 @@ window.setInterval(render, 2000);
 window.addEventListener("storage", render);
 window.addEventListener("focus", render);
 render();
+
+}
+
+if (requireAdmin()) {
+  watchAuthChanges(true);
+  initPage();
+}

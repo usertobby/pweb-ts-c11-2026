@@ -10,17 +10,35 @@ export function isAdmin() {
     return (user?.role === "admin" ||
         user?.role === "moderator");
 }
-// Melindungi halaman yang membutuhkan login
+// Guard mengembalikan false agar inisialisasi halaman dapat dihentikan.
 export function requireAuth() {
     if (!isAuthenticated()) {
         window.location.replace("login.html");
+        return false;
     }
+    return true;
 }
-// Melindungi halaman khusus admin
 export function requireAdmin() {
-    if (!isAuthenticated() || !isAdmin()) {
+    if (!isAuthenticated()) {
         window.location.replace("login.html");
+        return false;
     }
+    if (!isAdmin()) {
+        window.location.replace("ambil-antrian.html");
+        return false;
+    }
+    return true;
+}
+// Bila logout terjadi di tab lain, halaman terlindungi ikut menutup akses.
+export function watchAuthChanges(adminOnly = false) {
+    window.addEventListener("storage", (event) => {
+        if (event.key === "hospital_user" || event.key === null) {
+            if (adminOnly)
+                requireAdmin();
+            else
+                requireAuth();
+        }
+    });
 }
 // Logout
 export function logout() {

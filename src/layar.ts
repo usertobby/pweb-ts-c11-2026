@@ -1,6 +1,10 @@
+import { requireAuth, watchAuthChanges, logout } from "./utils/auth.js";
 import { getJenisAntrian, getTiket } from "./services/storage.js";
 import type { JenisAntrian, Tiket } from "./types/index.js";
 
+
+function initPage(): void {
+  document.getElementById("logoutButton")?.addEventListener("click", logout);
 // --- ELEMENT HTML ---
 const byId = <T extends HTMLElement>(id: string): T | null => document.getElementById(id) as T | null;
 
@@ -168,3 +172,10 @@ window.setInterval(render, 2500);
 window.addEventListener("storage", render);
 window.addEventListener("focus", render);
 render();
+
+}
+
+if (requireAuth()) {
+  watchAuthChanges(false);
+  initPage();
+}

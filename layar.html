@@ -1,10 +1,22 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" class="auth-pending">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#101815" />
   <title>Layar Antrian | care11</title>
+  <style>.auth-pending body{visibility:hidden}</style>
+  <script>
+    (() => {
+      let allowed = false;
+      try {
+        const user = JSON.parse(localStorage.getItem("hospital_user") || "null");
+        allowed = Boolean(user?.accessToken);
+      } catch { allowed = false; }
+      if (!allowed) { window.location.replace("login.html"); return; }
+      document.documentElement.classList.remove("auth-pending");
+    })();
+  </script>
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/layar.css" />
   <script type="module" src="./dist/layar.js" defer></script>
@@ -22,6 +34,12 @@
     </div>
 
     <div class="layar-controls">
+      <a href="./ambil-antrian.html" class="layar-button layar-nav-button">
+        <span aria-hidden="true">←</span>
+        Ambil Antrian
+      </a>
+      <button type="button" id="logoutButton" class="layar-button">
+        <span aria-hidden="true">↪</span>Keluar</button>
       <button id="soundToggle" class="layar-button" type="button" aria-pressed="true" title="Nyalakan/matikan suara panggilan">
         <span aria-hidden="true">♪</span> <span id="soundLabel">Suara aktif</span>
       </button>

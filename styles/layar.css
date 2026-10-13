@@ -85,6 +85,24 @@ button { font: inherit; cursor: pointer; }
   transition: border-color .15s, background .15s;
 }
 .layar-button:hover { border-color: #48604f; background: #203327; }
+/* Tombol navigasi ke halaman Ambil Antrian */
+.layar-nav-button {
+  text-decoration: none;
+  background: #1a2a21;
+  color: #eef3ee;
+  white-space: nowrap;
+}
+
+.layar-nav-button:hover {
+  background: #203327;
+  border-color: #48604f;
+  color: #ffffff;
+}
+
+.layar-nav-button:focus-visible {
+  outline: 2px solid #7dbd8e;
+  outline-offset: 3px;
+}
 .layar-button span:first-child { color: var(--ly-green); font-size: 15px; }
 
 /* --- HERO: NOMOR TERAKHIR DIPANGGIL --- */
@@ -202,4 +220,8 @@ button { font: inherit; cursor: pointer; }
   .layar-hero { padding: 22px 14px; }
   .layar-grid { grid-template-columns: 1fr; }
   .layar-footer { flex-direction: column; text-align: center; }
+  .layar-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

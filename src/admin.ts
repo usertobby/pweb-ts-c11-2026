@@ -1,10 +1,10 @@
-import { isAdmin, logout, requireAdmin } from "./utils/auth.js";
+import { logout, requireAdmin, watchAuthChanges } from "./utils/auth.js";
 import { getJenisAntrian, getTiket, getUser, saveJenisAntrian, saveTiket } from "./services/storage.js";
 import type { JenisAntrian, Priority, Tiket } from "./types/index.js";
 
-requireAdmin();
-if (!isAdmin()) window.location.replace("login.html");
 
+
+function initPage(): void {
 const byId = <T extends HTMLElement>(id: string): T | null => document.getElementById(id) as T | null;
 const user = getUser();
 const name = user?.firstName || user?.username || "Admin";
@@ -242,3 +242,10 @@ window.addEventListener("storage", render);
 window.addEventListener("focus", render);
 window.setInterval(render, 2000);
 render();
+
+}
+
+if (requireAdmin()) {
+  watchAuthChanges(true);
+  initPage();
+}
