@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101815" />
+  <title>Layar Antrian | care11</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/layar.css" />
+  <script type="module" src="./dist/layar.js" defer></script>
+</head>
+<body class="layar-page">
+  <header class="layar-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span><strong>care11<span>.</span></strong><small>Layar antrian</small></span>
+    </div>
+
+    <div class="layar-clock" aria-label="Waktu sekarang">
+      <strong id="layarClock">--:--</strong>
+      <small id="layarDate">—</small>
+    </div>
+
+    <div class="layar-controls">
+      <button id="soundToggle" class="layar-button" type="button" aria-pressed="true" title="Nyalakan/matikan suara panggilan">
+        <span aria-hidden="true">♪</span> <span id="soundLabel">Suara aktif</span>
+      </button>
+      <button id="fullscreenToggle" class="layar-button" type="button" title="Tampilkan layar penuh">
+        <span aria-hidden="true">⛶</span> <span id="fullscreenLabel">Layar penuh</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="layar-main">
+    <section class="layar-hero" aria-live="polite">
+      <p class="hero-label"><span class="live-dot"></span> NOMOR YANG SEDANG DIPANGGIL</p>
+      <strong id="heroNumber">—</strong>
+      <p class="hero-meta" id="heroMeta">Menunggu panggilan pertama</p>
+    </section>
+
+    <section class="layar-grid" id="layarGrid" aria-label="Antrian per layanan"></section>
+
+    <p id="layarEmpty" class="layar-empty" hidden>Belum ada layanan aktif. Silakan hubungi petugas di meja informasi.</p>
+  </main>
+
+  <footer class="layar-footer">
+    <span>Mohon perhatikan nomor antrian Anda</span>
+    <span><span class="live-dot"></span> Diperbarui otomatis</span>
+  </footer>
+</body>
+</html>

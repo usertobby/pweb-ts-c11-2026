@@ -1,0 +1,205 @@
+:root {
+  --ly-bg: #101815;
+  --ly-card: #18241e;
+  --ly-line: #27362d;
+  --ly-ink: #eef3ee;
+  --ly-muted: #93a598;
+  --ly-green: #7dbd8e;
+}
+
+.layar-page {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--ly-bg);
+  color: var(--ly-ink);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.layar-page * { box-sizing: border-box; }
+.layar-page [hidden] { display: none !important; }
+button { font: inherit; cursor: pointer; }
+
+.layar-page { scrollbar-color: #2c3c32 #101815; }
+.layar-page ::-webkit-scrollbar { width: 10px; }
+.layar-page ::-webkit-scrollbar-track { background: #101815; }
+.layar-page ::-webkit-scrollbar-thumb { background: #2c3c32; border-radius: 6px; }
+
+.live-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ly-green);
+  box-shadow: 0 0 0 3px #7dbd8e2e;
+  animation: ly-pulse 2s infinite;
+}
+
+@keyframes ly-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+
+/* --- HEADER --- */
+.layar-header {
+  padding: 18px max(28px, calc((100vw - 1440px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--ly-line);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #1d2f25;
+  color: var(--ly-green);
+  font-size: 24px;
+}
+.brand strong { display: block; font-size: 19px; letter-spacing: -.8px; line-height: 1; }
+.brand strong > span { color: var(--ly-green); }
+.brand small { display: block; margin-top: 5px; color: var(--ly-muted); font-size: 10px; letter-spacing: .4px; }
+
+.layar-clock { display: grid; justify-items: center; gap: 4px; }
+.layar-clock strong { font-size: 30px; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.layar-clock small { color: var(--ly-muted); font-size: 11px; }
+
+.layar-controls { display: flex; align-items: center; gap: 9px; }
+.layar-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--ly-line);
+  background: #1a2a21;
+  color: var(--ly-ink);
+  border-radius: 9px;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  transition: border-color .15s, background .15s;
+}
+.layar-button:hover { border-color: #48604f; background: #203327; }
+.layar-button span:first-child { color: var(--ly-green); font-size: 15px; }
+
+/* --- HERO: NOMOR TERAKHIR DIPANGGIL --- */
+.layar-main { flex: 1; width: 100%; max-width: 1440px; margin: 0 auto; padding: 18px 28px 14px; display: flex; flex-direction: column; gap: 14px; }
+
+.layar-hero {
+  border: 1px solid var(--ly-line);
+  border-radius: 18px;
+  background: radial-gradient(120% 160% at 50% 0%, #1c2e23 0%, var(--ly-card) 70%);
+  padding: 18px 20px 16px;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.hero-label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--ly-muted);
+  font-size: 12px;
+  letter-spacing: 3.5px;
+  font-weight: 700;
+}
+
+.layar-hero strong {
+  font-size: clamp(56px, 9.5vw, 118px);
+  line-height: 1;
+  letter-spacing: -5px;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 6px 40px #7dbd8e26;
+}
+
+.hero-meta { margin: 0; color: var(--ly-muted); font-size: 14px; }
+
+/* --- KARTU PER LAYANAN --- */
+.layar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.layar-card {
+  border: 1px solid var(--ly-line);
+  border-radius: 15px;
+  background: var(--ly-card);
+  padding: 13px 18px 11px;
+  display: grid;
+  gap: 8px;
+}
+
+.layar-card-head { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.layar-card-code {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: #223528;
+  color: var(--ly-green);
+  font-weight: 700;
+  font-size: 15px;
+  flex: none;
+}
+.layar-card-head > div { display: grid; gap: 4px; min-width: 0; }
+.layar-card-head strong { font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.layar-card-head small { font-size: 10px; color: var(--ly-muted); }
+
+.layar-card-number {
+  margin: 0;
+  font-size: clamp(32px, 4.5vw, 44px);
+  line-height: 1;
+  letter-spacing: -2.5px;
+  color: var(--ly-green);
+  font-variant-numeric: tabular-nums;
+}
+
+.layar-card-remaining { margin: 0; color: var(--ly-muted); font-size: 12px; }
+.layar-card-remaining strong { color: #fff; font-size: 15px; margin-right: 2px; }
+
+.layar-empty {
+  margin: 0;
+  border: 1px dashed var(--ly-line);
+  border-radius: 13px;
+  padding: 26px;
+  text-align: center;
+  color: var(--ly-muted);
+  font-size: 13px;
+}
+
+/* --- FOOTER --- */
+.layar-footer {
+  padding: 15px max(28px, calc((100vw - 1440px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid var(--ly-line);
+  color: var(--ly-muted);
+  font-size: 11px;
+}
+.layar-footer > span:last-child { display: flex; align-items: center; gap: 9px; }
+
+/* --- LAYAR PENUH --- */
+:fullscreen .layar-header,
+:fullscreen .layar-footer { padding-left: 28px; padding-right: 28px; }
+:fullscreen .layar-main { max-width: none; }
+
+@media (max-width: 720px) {
+  .layar-header { flex-wrap: wrap; justify-content: center; gap: 14px; padding: 14px 16px; }
+  .layar-clock strong { font-size: 22px; }
+  .layar-main { padding: 18px 14px; }
+  .layar-hero { padding: 22px 14px; }
+  .layar-grid { grid-template-columns: 1fr; }
+  .layar-footer { flex-direction: column; text-align: center; }
+}

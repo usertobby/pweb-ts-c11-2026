@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="id" class="auth-pending">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f7f3" />
+  <title>Panel Operator | care11</title>
+  <style>.auth-pending body{visibility:hidden}</style>
+  <script>
+    (() => {
+      let allowed = false;
+      try {
+        const user = JSON.parse(localStorage.getItem("hospital_user") || "null");
+        allowed = Boolean(user?.accessToken);
+      } catch {
+        allowed = false;
+      }
+      if (!allowed) {
+        window.location.replace("login.html");
+        return;
+      }
+      document.documentElement.classList.remove("auth-pending");
+    })();
+  </script>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/operator.css" />
+  <script type="module" src="./dist/operator.js" defer></script>
+</head>
+<body class="operator-page">
+  <header class="operator-header">
+    <a class="brand" href="./operator.html" aria-label="care11 panel operator">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span><strong>care11<span>.</span></strong><small>Panel operator</small></span>
+    </a>
+    <nav class="top-links" aria-label="Navigasi utama">
+      <a href="./index.html">Dashboard</a>
+      <a class="current" href="./operator.html">Operator</a>
+      <a href="./layar.html" target="_blank">Layar antrian ↗</a>
+      <a href="./ambil-antrian.html" target="_blank">Ambil antrian ↗</a>
+    </nav>
+    <div class="account">
+      <div class="account-avatar" id="userInitial">O</div>
+      <div class="account-copy"><strong id="userName">Operator</strong><span id="userRole">Petugas</span></div>
+      <button id="logoutButton" class="logout-button" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="operator-main">
+    <section class="welcome-row">
+      <div>
+        <p class="eyebrow"><span class="live-dot"></span> PANEL PENGANGGILAN ANTRIAN</p>
+        <h1>Panggil <em>antrian.</em></h1>
+        <p class="welcome-copy">Panggil tiket berikutnya sesuai urutan prioritas, lewati yang tidak hadir, atau tutup layanan.</p>
+      </div>
+      <div class="today-chip"><span class="calendar-icon" aria-hidden="true">▦</span><span><small>HARI INI</small><strong id="todayDate">—</strong></span></div>
+    </section>
+
+    <section class="stats-grid" aria-label="Ringkasan antrian">
+      <article class="stat-card"><span class="stat-icon amber" aria-hidden="true">◷</span><div><p>Menunggu</p><strong id="waitingCount">0</strong><small>siap dipanggil</small></div></article>
+      <article class="stat-card"><span class="stat-icon blue" aria-hidden="true">◉</span><div><p>Sedang dipanggil</p><strong id="calledCount">0</strong><small>tiket aktif</small></div></article>
+      <article class="stat-card"><span class="stat-icon lilac" aria-hidden="true">✓</span><div><p>Selesai</p><strong id="doneCount">0</strong><small>kunjungan tuntas</small></div></article>
+      <article class="stat-card"><span class="stat-icon red" aria-hidden="true">⤫</span><div><p>Dilewati</p><strong id="skippedCount">0</strong><small>tidak hadir</small></div></article>
+    </section>
+
+    <section class="panel call-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">LOKET PENGANGGILAN</p>
+          <h2>Antrian per layanan</h2>
+          <p class="panel-subtitle">Prioritas dipanggil lebih dulu: VIP → Disabilitas → Lansia → Normal.</p>
+        </div>
+        <span class="count-pill" id="serviceCount">0 layanan</span>
+      </div>
+      <div id="callList" class="call-list" aria-live="polite"></div>
+      <div id="emptyServices" class="empty-state" hidden>
+        <span aria-hidden="true">✳</span>
+        <strong>Belum ada layanan aktif</strong>
+        <p>Tambahkan jenis antrian terlebih dahulu dari Dashboard Admin.</p>
+      </div>
+    </section>
+
+    <footer class="operator-footer">
+      <span>care11<span class="brand-dot">.</span> <span class="footer-muted">· Sistem antrian layanan pasien</span></span>
+      <span><span class="live-dot"></span> Diperbarui otomatis setiap 2 detik</span>
+    </footer>
+  </main>
+</body>
+</html>
